@@ -4,7 +4,6 @@
 
 ### EXAMPLE-IMPLEMENTATION ###
 
-# test
 
 import sys
 import json
