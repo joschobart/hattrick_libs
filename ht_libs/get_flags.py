@@ -1,5 +1,7 @@
 from bs4 import BeautifulSoup
 
+from . import config
+
 
 
 def compile_flags_list(flags_xml):
@@ -23,16 +25,10 @@ def compile_flags_list(flags_xml):
 
 def get_all_flags():
     ''' 
-    Get a list with all available flags from a static xml-file
+    Get a list with all available flags from config.py
     '''
+    all_flags = config.all_flags
 
-    with open('static/allflags.xml', 'r') as f:
-        allflags_xml = f.read()
-
-    allflags_soup = BeautifulSoup(allflags_xml, "xml")
-    flags = allflags_soup.find_all('Flag')
-
-    all_flags = compile_flags_list(flags)
 
     return(all_flags)
 

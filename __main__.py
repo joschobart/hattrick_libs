@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
-
-
 ### EXAMPLE-IMPLEMENTATION ###
+
 
 
 import sys
@@ -14,6 +13,7 @@ from pathlib import Path
 from ht_libs import do_hattrick_request
 from ht_libs import get_teamdetails
 from ht_libs import get_flags
+from ht_libs import config
 
 
 
@@ -76,10 +76,6 @@ def main():
     First we try to oauth with hattrick.org and get the xml-files.
     Second you find some demo-code that shows how to use the libs.
     '''
-
-
-    session_status_url = 'https://chpp.hattrick.org/oauth/check_token.ashx'
-    api_url = 'https://chpp.hattrick.org/chppxml.ashx'
     file = Path('../cache/creds')
 
 
@@ -99,12 +95,12 @@ def main():
 
     session = do_hattrick_request.open_auth_session(access_token_key, access_token_secret)
 
-    status = session.get(session_status_url)
+    status = session.get(config.token_status_url)
 
 
     if status.status_code == 200:
         try:
-            teamdetails_xml = session.get(api_url, params={
+            teamdetails_xml = session.get(base_url, params={
                 'file': 'teamdetails', 
                 'version': '3.6',
                 'includeFlags': 'true',
@@ -140,15 +136,16 @@ def main():
 
 
     # # Example III:
-    # all_flags = get_flags.get_all_flags()
+    all_flags = get_flags.get_all_flags()
 
-    # print(len(all_flags))
+    print(json.dumps(all_flags, indent=4).encode('latin1')\
+                                            .decode('unicode_escape'))
 
 
     # Example IV shows missing away flags for team x:
-    all_missing_flags = get_flags.get_missing_flags(teamdetails_xml.text)
+    # all_missing_flags = get_flags.get_missing_flags(teamdetails_xml.text)
 
-    print(json.dumps(all_missing_flags['628463']['missing_away'], indent=4))
+    # print(json.dumps(all_missing_flags['628463']['missing_away'], indent=4))
 
 
     # Example V shows teamdetails for team x:

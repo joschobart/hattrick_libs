@@ -1,28 +1,17 @@
-from os import environ
 from rauth import OAuth1Service
 from rauth import OAuth1Session
 
-
-
-# # Ht vars
-oauth_key = environ['HATTRICK_OAUTH_CONSUMER_KEY']
-oauth_secret = environ['HATTRICK_OAUTH_CONSUMER_SECRET']
-
-request_token_url = 'https://chpp.hattrick.org/oauth/request_token.ashx'
-access_token_url = 'https://chpp.hattrick.org/oauth/access_token.ashx'
-authorize_url = 'https://chpp.hattrick.org/oauth/authorize.aspx'
-base_url = 'https://chpp.hattrick.org/chppxml.ashx'
-token_status_url = 'https://chpp.hattrick.org/oauth/check_token.ashx'
+from . import config
 
 
 
 request_client = OAuth1Service(
-           consumer_key = oauth_key,
-           consumer_secret = oauth_secret,
-           request_token_url = request_token_url,
-           access_token_url = access_token_url,
-           authorize_url = authorize_url,
-           base_url = base_url,
+           consumer_key = config.oauth_key,
+           consumer_secret = config.oauth_secret,
+           request_token_url = config.request_token_url,
+           access_token_url = config.access_token_url,
+           authorize_url = config.authorize_url,
+           base_url = config.base_url,
            )
 
 
@@ -67,8 +56,8 @@ def open_auth_session(access_token_key, access_token_secret):
 	# Step 5 : Finally open oauth-session
 	#
 	my_auth_session = OAuth1Session(
-						oauth_key,
-                        oauth_secret,
+						config.oauth_key,
+                        config.oauth_secret,
                         access_token = access_token_key,
                         access_token_secret = access_token_secret,
                         )
