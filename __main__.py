@@ -114,7 +114,7 @@ def main():
 
 
 
-    # # Examples (use hattrick-api)
+    # # Examples (use of hattrick-api)
 
 
     # # Example I:

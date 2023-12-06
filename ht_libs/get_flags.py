@@ -19,6 +19,7 @@ def compile_flags_list(flags_xml):
         li = (league_id, league_name, country_code)
         flags_list.append(li)
 
+
     return(flags_list)
 
 
