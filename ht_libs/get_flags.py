@@ -28,9 +28,14 @@ def get_all_flags():
     Get a list with all available flags from config.py
     '''
     all_flags = config.all_flags
+    flags_tuples = []
+
+    for flag in all_flags:
+        flag = tuple(flag)
+        flags_tuples.append(flag)
 
 
-    return(all_flags)
+    return(flags_tuples)
 
 
 
@@ -82,17 +87,18 @@ def get_missing_flags(teamdetails_xml):
     Get a complex dict object with all specific flags (home/away)
     that are missing for a specific user
     '''
-
     missing_flags_dict = {}
 
     all_flags = get_all_flags()
     all_my_flags = get_my_flags(teamdetails_xml)
+
     teams = get_my_flags(teamdetails_xml).keys()
 
 
     for team in teams:
         missing_home = list(set(all_flags) - set(all_my_flags[team]['flags_home']))
         missing_away = list(set(all_flags) - set(all_my_flags[team]['flags_away']))
+
 
         missing_flags_dict[team] = { "missing_home": missing_home,
                                      "missing_away": missing_away }
