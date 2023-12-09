@@ -10,10 +10,12 @@ import json
 from time import sleep
 from pathlib import Path
 
-from ht_libs import do_hattrick_request
-from ht_libs import get_teamdetails
-from ht_libs import get_flags
 from ht_libs import config
+from ht_libs import do_challenge
+from ht_libs import do_hattrick_request
+from ht_libs import get_flags
+from ht_libs import get_series
+from ht_libs import get_teamdetails
 
 
 
@@ -104,7 +106,33 @@ def main():
                 'file': 'teamdetails', 
                 'version': '3.6',
                 'includeFlags': 'true',
+                'userID': '',
                 })
+
+
+            search_series_xml = session.get(config.base_url, params={
+                'file': 'search',
+                'version': '1.2',
+                'searchType': '3',
+                'searchString': 'ii.1',
+                'searchLeagueID': '46',
+                })
+
+
+            teams_in_series_xml = session.get(config.base_url, params={
+                'file': 'leaguedetails',
+                'version': '1.6',
+                'leagueLevelUnitID': '8694',
+                })
+
+
+            challengeable_xml = session.get(config.base_url, params={
+                'file': 'challenges',
+                'version': '1.6',
+                'actionType': 'challengeable',
+                'suggestedTeamIds': '1451697, 802627, 171257, 170714'
+                })
+
 
             print('Download of data successful')
         except:
@@ -142,16 +170,32 @@ def main():
     #                                         .decode('unicode_escape'))
 
 
-    # Example IV shows missing away flags for team x:
-    all_missing_flags = get_flags.get_missing_flags(teamdetails_xml.text)
+    # Example IV returns missing away flags for team x:
+    # all_missing_flags = get_flags.get_missing_flags(teamdetails_xml.text)
 
-    print(json.dumps(all_missing_flags['628463']['missing_away'], indent=4))
+    # print(json.dumps(all_missing_flags['628463']['missing_away'], indent=4))
 
 
-    # Example V shows teamdetails for team x:
+    # Example V returns teamdetails for team x:
     # team_details = get_teamdetails.get_my_teamdetails(teamdetails_xml.text)
 
     # print(json.dumps(team_details, indent=4))
+
+
+    # Example VI returns the series (league) with name x, nation y, teams z:
+    # my_series = get_series.get_my_series(search_series_xml.text)
+    # my_series_teams = get_series.get_teams_in_series(teams_in_series_xml.text)
+
+    # print(json.dumps(my_series, indent=4))
+    # print(json.dumps(my_series_teams, indent=4))
+
+
+    # Example VII returns a sub-list of challegeable teams and challenge:
+    my_pot_challenges = do_challenge.is_challengeable(challengeable_xml.text)
+
+    my_challenges = do_challenge.do_challenge(session, my_pot_challenges)
+
+    print(json.dumps(my_challenges, indent=4))
 
 
 
