@@ -15,16 +15,18 @@ def is_challengeable(challengeable_xml):
 	challengeable_soup = BeautifulSoup(challengeable_xml, 'xml')
 
 
-	ChallengeableResult_tag = challengeable_soup.find('ChallengeableResult')
+	Opponent_tags = challengeable_soup.find_all('Opponent')
 
 
-	team_id, *_ = ChallengeableResult_tag.Opponent.TeamId.contents
-	is_challengeable, *_ = ChallengeableResult_tag.Opponent.IsChallengeable.contents
+	for Opponent_tag in Opponent_tags:
 
-	if is_challengeable == 'True':
-		challengeable_teams.append(team_id)
+		team_id, *_ = Opponent_tag.TeamId.contents
+		is_challengeable, *_ = Opponent_tag.IsChallengeable.contents
 
-	
+		if is_challengeable == 'True':
+			challengeable_teams.append(team_id)
+
+
 	return(challengeable_teams)
 
 

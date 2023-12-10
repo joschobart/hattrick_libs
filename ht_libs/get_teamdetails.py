@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 
 
 
-def get_my_teamdetails(teamdetails_xml):
+def get_teamdetails(teamdetails_xml):
     ''' 
     Get a complex dict object with important infos
     for a specific user from teamdetails.xml
@@ -21,12 +21,13 @@ def get_my_teamdetails(teamdetails_xml):
     user_id, *_ = User_tag.UserID.contents
     login_name, *_ = User_tag.Loginname.contents
     supporter_tier, *_= User_tag.SupporterTier.contents
-
+    signup_date, *_= User_tag.SignupDate.contents
 
     team_dict['user'] = { 
                 'user_id': user_id, 
                 'login_name': login_name,
-                'supporter_tier': supporter_tier, 
+                'supporter_tier': supporter_tier,
+                'signup_date': signup_date,
                 }
 
 

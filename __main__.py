@@ -130,7 +130,7 @@ def main():
                 'file': 'challenges',
                 'version': '1.6',
                 'actionType': 'challengeable',
-                'suggestedTeamIds': '1451697, 802627, 171257, 170714'
+                'suggestedTeamIds': '2014985,2015598,2014905,2014210,2014764'
                 })
 
 
@@ -177,9 +177,9 @@ def main():
 
 
     # Example V returns teamdetails for team x:
-    # team_details = get_teamdetails.get_my_teamdetails(teamdetails_xml.text)
+    team_details = get_teamdetails.get_teamdetails(teamdetails_xml.text)
 
-    # print(json.dumps(team_details, indent=4))
+    print(json.dumps(team_details, indent=4))
 
 
     # Example VI returns the series (league) with name x, nation y, teams z:
@@ -190,13 +190,13 @@ def main():
     # print(json.dumps(my_series_teams, indent=4))
 
 
-    # Example VII returns a sub-list of challegeable teams and challenge:
-    my_pot_challenges = do_challenge.is_challengeable(challengeable_xml.text)
+    # Example VII returns a sub-list of challegeable teams and /!\ challenge /!\:
+    # my_pot_challenges = do_challenge.is_challengeable(challengeable_xml.text)
 
-    my_challenges = do_challenge.do_challenge(session, my_pot_challenges)
+    # my_challenges = do_challenge.do_challenge(session, my_pot_challenges)
 
-    print(json.dumps(my_challenges, indent=4))
-
+    # print(json.dumps(my_pot_challenges, indent=4))
+    # print(my_pot_challenges)
 
 
 if __name__ == '__main__':
