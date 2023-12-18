@@ -23,7 +23,7 @@ def get_teamdetails(teamdetails_xml):
     supporter_tier, *_= User_tag.SupporterTier.contents
     signup_date, *_= User_tag.SignupDate.contents
 
-    team_dict['user'] = { 
+    team_dict['user'] = {
                 'user_id': user_id, 
                 'login_name': login_name,
                 'supporter_tier': supporter_tier,
@@ -31,9 +31,7 @@ def get_teamdetails(teamdetails_xml):
                 }
 
 
-
     for Team_tag in Team_tags:
-
         team_id, *_ = Team_tag.TeamID.contents
         team_name, *_ = Team_tag.TeamName.contents
         team_short, *_ = Team_tag.ShortTeamName.contents
@@ -43,7 +41,7 @@ def get_teamdetails(teamdetails_xml):
         team_league_level_unit_name, *_ = Team_tag.LeagueLevelUnit.LeagueLevelUnitName.contents
         team_league_level_unit_level, *_ = Team_tag.LeagueLevelUnit.LeagueLevel.contents
         team_is_bot, *_ = Team_tag.BotStatus.IsBot.contents
-        team_in_cup, *_ = Team_tag.Cup.StillInCup.contents
+
 
         team_dict[team_id] = { 
                     'team_name': team_name,
@@ -54,8 +52,6 @@ def get_teamdetails(teamdetails_xml):
                     'team_league_level_unit_name': team_league_level_unit_name,
                     'team_league_level_unit_level': team_league_level_unit_level,
                     'team_is_bot': team_is_bot,
-                    'team_in_cup': team_in_cup, 
                     }
-
 
     return(team_dict)
