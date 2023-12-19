@@ -140,6 +140,7 @@ def get_challenges(challenges_xml):
 							'team_name': team_name,
 							'training_match_id': training_match_id,
 							'match_id': match_id,
+							'match_time': match_time,
 							'friendly_type': friendly_type,
 							'opponent_team_id': opponent_team_id,
 							'opponent_team_name': opponent_team_name,
