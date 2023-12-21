@@ -104,6 +104,12 @@ def get_challenges(challenges_xml):
 	team_name, *_ = Team_tag.TeamName.contents
 
 
+	challenges = {	'team_id': team_id,
+					'team_name': team_name,
+					'challenges': []
+					}
+
+
 	try:
 		Challenge_tags = challenged_teams_soup.find_all('Challenge')
 
@@ -111,13 +117,17 @@ def get_challenges(challenges_xml):
 		challenges = None
 
 
-	print(Challenge_tags)
-
 	else:
 		for Challenge_tag in Challenge_tags:
 
+
 			training_match_id, *_ = Challenge_tag.TrainingMatchID.contents
-			match_id, *_ = Challenge_tag.MatchID.contents
+			
+			try:
+				match_id, *_ = Challenge_tag.MatchID.contents
+			except:
+				match_id = ''
+
 			match_time, *_ = Challenge_tag.MatchTime.contents
 			friendly_type, *_ = Challenge_tag.FriendlyType.contents
 			opponent_team_id, *_ = Challenge_tag.Opponent.TeamID.contents
@@ -139,8 +149,7 @@ def get_challenges(challenges_xml):
 				is_agreed = 'False'
 
 
-			challenges = { 	'team_id': team_id,
-							'team_name': team_name,
+			challenges['challenges'].append({ 
 							'training_match_id': training_match_id,
 							'match_id': match_id,
 							'match_time': match_time,
@@ -153,7 +162,7 @@ def get_challenges(challenges_xml):
 							'country_id': country_id,
 							'country_name': country_name, 
 							'is_agreed': is_agreed, 
-							}
+							})
 
 
 	return challenges
