@@ -110,6 +110,9 @@ def get_challenges(challenges_xml):
 	except:
 		challenges = None
 
+
+	print(Challenge_tags)
+
 	else:
 		for Challenge_tag in Challenge_tags:
 
