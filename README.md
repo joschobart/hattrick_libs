@@ -3,7 +3,7 @@
 This is a library to transform xml-data from the API of the infamous online-strategy-game hattrick (https://www.hattrick.org) into python objects.
 
 As this was just intended to be a python-learning-project and to be the ground-work for another hattrick-project of mine initially,
-(https://hattrick-fun-with-flags.app), hattick_libs doesn't aim to be complete nor useful to any other purpose than it was originally built for.
+https://hattrick-fun-with-flags.app, hattick_libs doesn't aim to be complete nor useful to any other purpose than it was originally built for.
 
 If you are looking for a complete python library for hattrick.org consider also pyCHPP of Pierre Gobin. His project was there before mine and 
 looks quite sophisticated to me. It's implemented in an object-oriented style and thus well readable and clean. Compared to pyCHPP, hattrick_libs is a 
@@ -20,7 +20,7 @@ For now the projects state is experimental. It's just my this-year christmas pro
 (information as of 2023-12-30)
 
 ## Project link
-(https://github.com/joschobart/hattrick_libs)
+https://github.com/joschobart/hattrick_libs
 
 ## Installation
 ```bash
