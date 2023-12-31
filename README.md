@@ -19,6 +19,9 @@ Have fun!:)
 For now the projects state is experimental. It's just my this-year christmas project after all!;) I'm actively maintaining this project though.
 (information as of 2023-12-30)
 
+## Project link
+(https://github.com/joschobart/hattrick_libs)
+
 ## Installation
 ```bash
 pip3 install hattrick-libs 
