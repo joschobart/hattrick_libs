@@ -5,7 +5,7 @@ This is a library to transform xml-data from the API of the infamous online-stra
 As this was just intended to be a python-learning-project and to be the ground-work for another hattrick-project of mine initially,
 https://hattrick-fun-with-flags.app, hattick_libs doesn't aim to be complete nor useful to any other purpose than it was originally built for.
 
-If you are looking for a complete python library for hattrick.org consider also pyCHPP of Pierre Gobin. His project was there before mine and 
+If you are looking for a complete python library for hattrick.org consider also pyCHPP by Pierre Gobin. His project was there before mine and 
 looks quite sophisticated to me. It's implemented in an object-oriented style and thus well readable and clean. Compared to pyCHPP, hattrick_libs is a 
 very basic implementation of the hattrick-API. But consider also this: If you are a learner like myself, hattrick_libs will be a perfect opportunity
 to get your hands dirty on some cool python stuff without having to learn oop first. Or you decide to implement your own flavor of a hattick library 
