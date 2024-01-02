@@ -5,10 +5,7 @@ from bs4 import BeautifulSoup
 
 
 def get_my_worlddetails(worlddetails_xml):
-    """
-    Get a complex dict object with important infos
-    for a specific nation from worlddetails.xml
-    """
+    """Get a complex dict object with important infos for a specific nation from worlddetails.xml"""
 
     world_dict = {}
 
@@ -16,13 +13,16 @@ def get_my_worlddetails(worlddetails_xml):
 
     LeagueID_tag = world_soup.find("LeagueID")
     NumberOfLevels_tag = world_soup.find("NumberOfLevels")
+    MatchRound_tag = world_soup.find("MatchRound")
 
     league_id, *_ = LeagueID_tag.contents
     league_depth, *_ = NumberOfLevels_tag.contents
+    league_round, *_ = MatchRound_tag.contents
 
     world_dict = {
         "league_id": league_id,
         "league_depth": league_depth,
+        "league_round": league_round,
     }
 
     return world_dict
