@@ -17,12 +17,12 @@ def get_my_worlddetails(worlddetails_xml):
 
     league_id, *_ = LeagueID_tag.contents
     league_depth, *_ = NumberOfLevels_tag.contents
-    league_round, *_ = MatchRound_tag.contents
+    season_round, *_ = MatchRound_tag.contents
 
     world_dict = {
         "league_id": league_id,
         "league_depth": league_depth,
-        "league_round": league_round,
+        "season_round": season_round,
     }
 
     return world_dict
