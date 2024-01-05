@@ -42,7 +42,9 @@ def is_challengeable(challengeable_xml):
     return challengeable_teams
 
 
-def do_challenge(my_teamid, session, challengeable_teams):
+def do_challenge(
+    my_teamid, session, challengeable_teams, match_type="1", match_place="1"
+):
     """
     Takes a list of teams to challenge
     Returns status of challenges as dict
@@ -58,8 +60,8 @@ def do_challenge(my_teamid, session, challengeable_teams):
                 "actionType": "challenge",
                 "teamId": my_teamid,
                 "opponentTeamId": team_id,
-                "matchType": "1",  # 0 is normal, 1 is cup rules
-                "matchPlace": "1",  # 0 is home, 1 is away, 2 is neutral
+                "matchType": match_type,  # 0 is normal, 1 is cup rules
+                "matchPlace": match_place,  # 0 is home, 1 is away, 2 is neutral
                 "neutralArenaId": "",  # ArenaId for friendly on neutral ground
             },
         )
@@ -67,8 +69,6 @@ def do_challenge(my_teamid, session, challengeable_teams):
         challenge_soup = BeautifulSoup(challenge.text, "xml")
 
         Error_tag = challenge_soup.find_all("Error")
-
-        print(type(Error_tag))
 
         if Error_tag is None:
             Opponent_tag = challenge_soup.find("Opponent")
