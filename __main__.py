@@ -9,8 +9,9 @@ import sys
 from pathlib import Path
 from time import sleep
 
-from ht_libs import config, do_challenge, do_hattrick_request
+from ht_libs import config, do_hattrick_request, get_matchdetails
 
+# from ht_libs import do_challenge
 # from ht_libs import get_flags
 # from ht_libs import get_series
 # from ht_libs import get_teamdetails
@@ -83,7 +84,7 @@ def main():
         access_token_key, access_token_secret
     )
 
-    status = session.get(config.token_status_url)
+    status = session.get(config.TOKEN_STATUS_URL)
 
     if status.status_code == 200:
         try:
@@ -127,12 +128,23 @@ def main():
             #     },
             # )
 
-            challenges_xml = session.get(
-                config.base_url,
+            # challenges_xml = session.get(
+            #     config.base_url,
+            #     params={
+            #         "file": "challenges",
+            #         "version": "1.6",
+            #         "actionType": "view",
+            #     },
+            # )
+
+            matchdetails_xml = session.get(
+                config.BASE_URL,
                 params={
-                    "file": "challenges",
-                    "version": "1.6",
-                    "actionType": "view",
+                    "file": "matchdetails",
+                    "version": "3.1",
+                    "matchEvents": "false",
+                    "matchID": "52282171",
+                    "sourceSystem": "hattrick",
                 },
             )
 
@@ -185,14 +197,19 @@ def main():
 
     # Example VII returns a sub-list of challegeable teams and /!\ challenge /!\:
     # my_pot_challenges = do_challenge.is_challengeable(challengeable_xml.text)
-    my_challenges = do_challenge.get_challenges(challenges_xml.text)
+    # my_challenges = do_challenge.get_challenges(challenges_xml.text)
 
-    print(json.dumps(my_challenges, indent=4))
+    # print(json.dumps(my_challenges, indent=4))
 
     # my_challenges = do_challenge.do_challenge(session, my_pot_challenges)
 
     # print(json.dumps(my_pot_challenges, indent=4))
     # print(my_pot_challenges)
+
+    # Example VIII returns the details about match with id x:
+    my_match = get_matchdetails.get_matchdetails(matchdetails_xml.text)
+
+    print(json.dumps(my_match, indent=4))
 
 
 if __name__ == "__main__":
