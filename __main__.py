@@ -9,10 +9,11 @@ import sys
 from pathlib import Path
 from time import sleep
 
-from ht_libs import config, do_hattrick_request, get_matchdetails
+from ht_libs import config, do_hattrick_request, get_trainer_avatar
 
 # from ht_libs import do_challenge
 # from ht_libs import get_flags
+# from ht_libs import get_matchdetails
 # from ht_libs import get_series
 # from ht_libs import get_teamdetails
 
@@ -137,14 +138,23 @@ def main():
             #     },
             # )
 
-            matchdetails_xml = session.get(
+            # matchdetails_xml = session.get(
+            #     config.BASE_URL,
+            #     params={
+            #         "file": "matchdetails",
+            #         "version": "3.1",
+            #         "matchEvents": "false",
+            #         "matchID": "52282171",
+            #         "sourceSystem": "hattrick",
+            #     },
+            # )
+
+            staffavatars_xml = session.get(
                 config.BASE_URL,
                 params={
-                    "file": "matchdetails",
-                    "version": "3.1",
-                    "matchEvents": "false",
-                    "matchID": "52282171",
-                    "sourceSystem": "hattrick",
+                    "file": "staffavatars",
+                    "version": "1.1",
+                    "teamId": "2101798",
                 },
             )
 
@@ -207,9 +217,14 @@ def main():
     # print(my_pot_challenges)
 
     # Example VIII returns the details about match with id x:
-    my_match = get_matchdetails.get_matchdetails(matchdetails_xml.text)
+    # my_match = get_matchdetails.get_matchdetails(matchdetails_xml.text)
 
-    print(json.dumps(my_match, indent=4))
+    # print(json.dumps(my_match, indent=4))
+
+    # Example IX returns the details necessary to compile the trainer avatar:
+    my_trainer = get_trainer_avatar.get_trainer_avatar(staffavatars_xml.text)
+
+    print(json.dumps(my_trainer, indent=4))
 
 
 if __name__ == "__main__":
