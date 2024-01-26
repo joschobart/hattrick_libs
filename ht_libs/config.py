@@ -162,4 +162,6 @@ ALL_FLAGS = [
     ["29", "Venezuela", "VE"],
     ["70", "Vietnam", "VN"],
     ["162", "Zambia", "ZM"],
+    ["169", "Guyana", "GY"],
+    ["170", "Tahiti", "PF"],
 ]

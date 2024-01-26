@@ -120,12 +120,16 @@ def main():
             # )
 
             # challengeable_xml = session.get(
-            #     config.base_url,
+            #     config.BASE_URL,
             #     params={
             #         "file": "challenges",
             #         "version": "1.6",
             #         "actionType": "challengeable",
-            #         "suggestedTeamIds": "2014985,2015598,2014905,2014210,2014764",
+            #         "teamId": "2101798",
+            #         "isWeekendFriendly": "1",
+            #         "suggestedTeamIds": "2115616",
+            #         "matchType": "1",
+            #         "matchPlace": "1",
             #     },
             # )
 
@@ -207,9 +211,10 @@ def main():
 
     # Example VII returns a sub-list of challegeable teams and /!\ challenge /!\:
     # my_pot_challenges = do_challenge.is_challengeable(challengeable_xml.text)
+    # print(challengeable_xml.text)
     # my_challenges = do_challenge.get_challenges(challenges_xml.text)
 
-    # print(json.dumps(my_challenges, indent=4))
+    # print(json.dumps(my_pot_challenges, indent=4))
 
     # my_challenges = do_challenge.do_challenge(session, my_pot_challenges)
 
