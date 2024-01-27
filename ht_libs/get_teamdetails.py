@@ -35,15 +35,26 @@ def get_teamdetails(teamdetails_xml):
         team_short, *_ = Team_tag.ShortTeamName.contents
         team_primary, *_ = Team_tag.IsPrimaryClub.contents
         team_country_id, *_ = Team_tag.League.LeagueID.contents
-        (
-            team_league_level_unit_id,
-            *_,
-        ) = Team_tag.LeagueLevelUnit.LeagueLevelUnitID.contents
-        (
-            team_league_level_unit_name,
-            *_,
-        ) = Team_tag.LeagueLevelUnit.LeagueLevelUnitName.contents
-        team_league_level_unit_level, *_ = Team_tag.LeagueLevelUnit.LeagueLevel.contents
+
+        try:
+            (
+                team_league_level_unit_id,
+                *_,
+            ) = Team_tag.LeagueLevelUnit.LeagueLevelUnitID.contents
+        except AttributeError:
+            team_league_level_unit_id = ""
+            team_league_level_unit_name = ""
+            team_league_level_unit_level = ""
+        else:
+            (
+                team_league_level_unit_name,
+                *_,
+            ) = Team_tag.LeagueLevelUnit.LeagueLevelUnitName.contents
+            (
+                team_league_level_unit_level,
+                *_,
+            ) = Team_tag.LeagueLevelUnit.LeagueLevel.contents
+
         team_is_bot, *_ = Team_tag.BotStatus.IsBot.contents
 
         team_dict[team_id] = {
