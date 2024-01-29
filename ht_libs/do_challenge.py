@@ -43,7 +43,7 @@ def is_challengeable(challengeable_xml):
 
 
 def do_challenge(
-    my_teamid, session, challengeable_teams, match_type="1", match_place="1"
+    my_teamid, session, challengeable_teams, match_type="1", match_place="1", is_weekend_friendly="0"
 ):
     """
     Takes a list of teams to challenge
@@ -62,6 +62,7 @@ def do_challenge(
                 "opponentTeamId": team_id,
                 "matchType": match_type,  # 0 is normal, 1 is cup rules
                 "matchPlace": match_place,  # 0 is home, 1 is away, 2 is neutral
+                "isWeekendFriendly": is_weekend_friendly,  # 0 is false, 1 is true
                 "neutralArenaId": "",  # ArenaId for friendly on neutral ground
             },
         )
