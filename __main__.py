@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 from time import sleep
 
-from ht_libs import config, do_hattrick_request, get_matchdetails
+from ht_libs import config, do_hattrick_request, get_matchdetails, get_matches
 
 # from ht_libs import do_challenge
 # from ht_libs import get_flags
@@ -242,7 +242,7 @@ def main():
     # print(json.dumps(my_trainer, indent=4))
 
     # Example X returns the current list of future and past matches for a team:
-    my_matches = get_matchdetails.get_matches(matches_xml.text)
+    my_matches = get_matches.get_matches(matches_xml.text)
 
     print(json.dumps(my_matches, indent=4))
 

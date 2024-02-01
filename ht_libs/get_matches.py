@@ -19,7 +19,7 @@ def get_matches(matches_xml):
 
     team_id, *_ = Team_tag.contents
 
-    match_dict = {
+    matches_dict = {
         "team_id": team_id,
         "matches": [],
     }
@@ -33,7 +33,7 @@ def get_matches(matches_xml):
         match_type, *_ = Match_tag.MatchType.contents
         match_status, *_ = Match_tag.Status.contents
 
-        match_dict["matches"].append({
+        matches_dict["matches"].append({
             "match_id": match_id,
             "home_team_id": home_team_id,
             "away_team_id": away_team_id,
