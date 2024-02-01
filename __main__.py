@@ -9,13 +9,14 @@ import sys
 from pathlib import Path
 from time import sleep
 
-from ht_libs import config, do_hattrick_request, get_trainer_avatar
+from ht_libs import config, do_hattrick_request, get_matchdetails
 
 # from ht_libs import do_challenge
 # from ht_libs import get_flags
 # from ht_libs import get_matchdetails
 # from ht_libs import get_series
 # from ht_libs import get_teamdetails
+# from ht_libs import get_trainer_avatar
 
 
 def oauth_reg():
@@ -153,12 +154,21 @@ def main():
             #     },
             # )
 
-            staffavatars_xml = session.get(
+            # staffavatars_xml = session.get(
+            #     config.BASE_URL,
+            #     params={
+            #         "file": "staffavatars",
+            #         "version": "1.1",
+            #         "teamId": "2101798",
+            #     },
+            # )
+
+            matches_xml = session.get(
                 config.BASE_URL,
                 params={
-                    "file": "staffavatars",
-                    "version": "1.1",
-                    "teamId": "2101798",
+                    "file": "matches",
+                    "version": "2.9",
+                    "teamID": "",
                 },
             )
 
@@ -227,9 +237,14 @@ def main():
     # print(json.dumps(my_match, indent=4))
 
     # Example IX returns the details necessary to compile the trainer avatar:
-    my_trainer = get_trainer_avatar.get_trainer_avatar(staffavatars_xml.text)
+    # my_trainer = get_trainer_avatar.get_trainer_avatar(staffavatars_xml.text)
 
-    print(json.dumps(my_trainer, indent=4))
+    # print(json.dumps(my_trainer, indent=4))
+
+    # Example X returns the current list of future and past matches for a team:
+    my_matches = get_matchdetails.get_matches(matches_xml.text)
+
+    print(json.dumps(my_matches, indent=4))
 
 
 if __name__ == "__main__":
