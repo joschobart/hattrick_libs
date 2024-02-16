@@ -18,7 +18,12 @@ def get_teamdetails(teamdetails_xml):
     Team_tags = team_soup.find_all("Team")
 
     user_id, *_ = User_tag.UserID.contents
-    login_name, *_ = User_tag.Loginname.contents
+
+    try:
+        login_name, *_ = User_tag.Loginname.contents
+    except ValueError:
+        login_name = "bot"
+
     supporter_tier, *_ = User_tag.SupporterTier.contents
     signup_date, *_ = User_tag.SignupDate.contents
 
