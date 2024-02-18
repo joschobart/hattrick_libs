@@ -21,6 +21,7 @@ def get_matchdetails(matchdetails_xml):
 
     match_id, *_ = Match_tag.MatchID.contents
     match_date, *_ = Match_tag.MatchDate.contents
+    match_type, *_ = Match_tag.MatchType.contents
 
     home_team_id, *_ = HomeTeam_tag.HomeTeamID.contents
     home_team_name, *_ = HomeTeam_tag.HomeTeamName.contents
@@ -42,6 +43,7 @@ def get_matchdetails(matchdetails_xml):
     match_dict = {
         "match_id": match_id,
         "match_date": match_date,
+        "match_type": match_type,
         "home_team_id": home_team_id,
         "home_team_name": home_team_name,
         "home_team_goals": home_team_goals,
