@@ -17,11 +17,15 @@ request_client = OAuth1Service(
 
 
 def fetch_authorize_url(oauth_url="oob", scope=""):
-    """
-    OAUTH Step 1 and 2.
+    """Function for OAUTH Step 1 and 2.
 
     Step 1: Fetch Temporary Credential.
     Step 2: Get the auth URL.
+
+    :param oauth_url: Default value = "oob")
+    :param scope: Default value = "")
+    :returns: request_token, request_token_secret
+    :raises:
     """
     request_token, request_token_secret = request_client.get_request_token(
         params={
@@ -35,11 +39,17 @@ def fetch_authorize_url(oauth_url="oob", scope=""):
 
 
 def get_access_token(request_token, request_token_secret, auth_pin):
-    """
-    OAUTH Step 3 and 4.
+    """Function for OAUTH Step 3 and 4.
 
     Step 3 : Save auth_pin in var after the client was authorized.
     Step 4 : Exchange the request token for an access token.
+    
+
+    :param request_token:
+    :param request_token_secret:
+    :param auth_pin:
+    :returns: access_token_key, access_token_secret
+    :raises:
     """
     access_token_key, access_token_secret = request_client.get_access_token(
         request_token, request_token_secret, params={"oauth_verifier": auth_pin}
@@ -49,7 +59,15 @@ def get_access_token(request_token, request_token_secret, auth_pin):
 
 
 def open_auth_session(access_token_key, access_token_secret):
-    """OAUTH Step 5 : Finally open OAUTH-session."""
+    """Function for OAUTH Step 5.
+
+    Finally open OAUTH-session.
+
+    :param access_token_key:
+    :param access_token_secret:
+    :returns: auth_session
+    :raises:
+    """
     my_auth_session = OAuth1Session(
         config.OAUTH_KEY,
         config.OAUTH_SECRET,
