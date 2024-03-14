@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 from time import sleep
 
-from ht_libs import config, do_hattrick_request, get_matchdetails, get_matches
+from ht_libs import config, do_hattrick_request, get_flags
 
 # from ht_libs import do_challenge
 # from ht_libs import get_flags
@@ -90,15 +90,15 @@ def main():
 
     if status.status_code == 200:
         try:
-            # teamdetails_xml = session.get(
-            #     config.base_url,
-            #     params={
-            #         "file": "teamdetails",
-            #         "version": "3.6",
-            #         "includeFlags": "true",
-            #         "userID": "",
-            #     },
-            # )
+            teamdetails_xml = session.get(
+                config.BASE_URL,
+                params={
+                    "file": "teamdetails",
+                    "version": "3.6",
+                    "includeFlags": "true",
+                    "userID": "",
+                },
+            )
 
             # search_series_xml = session.get(
             #     config.base_url,
@@ -163,14 +163,14 @@ def main():
             #     },
             # )
 
-            matches_xml = session.get(
-                config.BASE_URL,
-                params={
-                    "file": "matches",
-                    "version": "2.9",
-                    "teamID": "",
-                },
-            )
+            # matches_xml = session.get(
+            #     config.BASE_URL,
+            #     params={
+            #         "file": "matches",
+            #         "version": "2.9",
+            #         "teamID": "",
+            #     },
+            # )
 
             print("Download of data successful")
         except Exception as e:
@@ -185,16 +185,16 @@ def main():
     # print(teams_dict['628463']['flags_home'][0][0])
 
     # # Example II for a representation like on hattrick:
-    # l = []
-    # teams_dict = get_flags.get_my_flags(teamdetails_xml.text)
+    _l = []
+    teams_dict = get_flags.get_my_flags(teamdetails_xml.text)
 
-    # for x in range(len(teams_dict['628463']['flags_away'])):
-    #     w = str(teams_dict['628463']['flags_away'][x][1])
-    #     w = w.lower().replace('ä', 'a')
-    #     w = w.replace('ö', 'o').replace('ü', 'u')
-    #     l.append((w, (teams_dict['628463']['flags_away'][x][0])))
+    for x in range(len(teams_dict["628463"]["flags_away"])):
+        w = str(teams_dict["628463"]["flags_away"][x][1])
+        w = w.lower().replace("ä", "a")
+        w = w.replace("ö", "o").replace("ü", "u")
+        _l.append((w, (teams_dict["628463"]["flags_away"][x][0])))
 
-    # print(sorted(l))
+    print(json.dumps(sorted(_l), indent=4))
 
     # # Example III:
     # all_flags = get_flags.get_all_flags()
@@ -242,9 +242,9 @@ def main():
     # print(json.dumps(my_trainer, indent=4))
 
     # Example X returns the current list of future and past matches for a team:
-    my_matches = get_matches.get_matches(matches_xml.text)
+    # my_matches = get_matches.get_matches(matches_xml.text)
 
-    print(json.dumps(my_matches, indent=4))
+    # print(json.dumps(my_matches, indent=4))
 
 
 if __name__ == "__main__":

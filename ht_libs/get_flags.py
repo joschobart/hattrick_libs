@@ -19,14 +19,18 @@ def compile_flags_list(flags_xml):
     """
 
     flags_list = []
+    flags_tuples = get_all_flags()
 
     for flag in flags_xml:
         league_id, *_ = flag.LeagueId.contents
-        league_name, *_ = flag.LeagueName.contents
         country_code, *_ = flag.CountryCode.contents
 
-        li = (league_id, league_name, country_code)
-        flags_list.append(li)
+        for flag_tuple in flags_tuples:
+            if league_id == flag_tuple[0]:
+                league_name = flag_tuple[1]
+
+                li = (league_id, league_name, country_code)
+                flags_list.append(li)
 
     return flags_list
 
