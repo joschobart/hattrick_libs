@@ -43,7 +43,7 @@ def get_access_token(request_token, request_token_secret, auth_pin):
 
     Step 3 : Save auth_pin in var after the client was authorized.
     Step 4 : Exchange the request token for an access token.
-    
+
 
     :param request_token:
     :param request_token_secret:
