@@ -26,12 +26,14 @@ def get_teamdetails(teamdetails_xml):
 
     supporter_tier, *_ = User_tag.SupporterTier.contents
     signup_date, *_ = User_tag.SignupDate.contents
+    last_login_date, *_ = User_tag.LastLoginDate.contents
 
     team_dict["user"] = {
         "user_id": user_id,
         "login_name": login_name,
         "supporter_tier": supporter_tier,
         "signup_date": signup_date,
+        "last_login_date": last_login_date,
     }
 
     for Team_tag in Team_tags:
