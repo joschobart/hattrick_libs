@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 from time import sleep
 
-from ht_libs import config, do_hattrick_request, get_flags
+from ht_libs import config, do_hattrick_request, get_flags, get_teamdetails
 
 # from ht_libs import do_challenge
 # from ht_libs import get_flags
@@ -208,9 +208,9 @@ def main():
     # print(json.dumps(all_missing_flags['628463']['missing_away'], indent=4))
 
     # Example V returns teamdetails for team x:
-    # team_details = get_teamdetails.get_teamdetails(teamdetails_xml.text)
+    team_details = get_teamdetails.get_teamdetails(teamdetails_xml.text)
 
-    # print(json.dumps(team_details, indent=4))
+    print(json.dumps(team_details, indent=4))
 
     # Example VI returns the series (league) with name x, nation y, teams z:
     # my_series = get_series.get_my_series(search_series_xml.text)
