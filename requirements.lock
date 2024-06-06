@@ -5,18 +5,32 @@
 #   pre: false
 #   features: []
 #   all-features: false
+#   with-sources: false
+#   generate-hashes: false
 
 -e file:.
 -e file:ht_libs
 beautifulsoup4==4.12.2
+    # via bs4
 bs4==0.0.1
+    # via hattrick-libs
 certifi==2023.11.17
+    # via requests
 charset-normalizer==3.3.2
+    # via requests
 idna==3.4
+    # via requests
 lxml==4.9.3
+    # via hattrick-libs
 rauth==0.7.3
+    # via hattrick-libs
 requests==2.31.0
+    # via rauth
 soupsieve==2.5
+    # via beautifulsoup4
 types-beautifulsoup4==4.12.0.7
+    # via hattrick-libs
 types-html5lib==1.1.11.15
+    # via types-beautifulsoup4
 urllib3==2.1.0
+    # via requests

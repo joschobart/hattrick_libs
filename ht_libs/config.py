@@ -164,4 +164,5 @@ ALL_FLAGS = [
     ["162", "Zambia", "ZM"],
     ["169", "Guyana", "GY"],
     ["170", "Tahiti", "PF"],
+    ["171", "Guinea", "GN"],
 ]
