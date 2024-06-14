@@ -63,6 +63,7 @@ def get_teamdetails(teamdetails_xml):
             ) = Team_tag.LeagueLevelUnit.LeagueLevel.contents
 
         team_is_bot, *_ = Team_tag.BotStatus.IsBot.contents
+        team_in_cup, *_ = Team_tag.Cup.StillInCup.contents
 
         team_dict[team_id] = {
             "team_name": team_name,
@@ -73,6 +74,7 @@ def get_teamdetails(teamdetails_xml):
             "team_league_level_unit_name": team_league_level_unit_name,
             "team_league_level_unit_level": team_league_level_unit_level,
             "team_is_bot": team_is_bot,
+            "team_in_cup": team_in_cup,
         }
 
     return team_dict
