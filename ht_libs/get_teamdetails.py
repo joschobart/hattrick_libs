@@ -63,7 +63,11 @@ def get_teamdetails(teamdetails_xml):
             ) = Team_tag.LeagueLevelUnit.LeagueLevel.contents
 
         team_is_bot, *_ = Team_tag.BotStatus.IsBot.contents
-        team_in_cup, *_ = Team_tag.Cup.StillInCup.contents
+
+        try:
+            team_in_cup, *_ = Team_tag.Cup.StillInCup.contents
+        except AttributeError:
+            team_in_cup = "True"
 
         team_dict[team_id] = {
             "team_name": team_name,
