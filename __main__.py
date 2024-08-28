@@ -188,11 +188,11 @@ def main():
     _l = []
     teams_dict = get_flags.get_my_flags(teamdetails_xml.text)
 
-    for x in range(len(teams_dict["628463"]["flags_away"])):
-        w = str(teams_dict["628463"]["flags_away"][x][1])
+    for x in range(len(teams_dict["628463"]["flags_home"])):
+        w = str(teams_dict["628463"]["flags_home"][x][1])
         w = w.lower().replace("ä", "a")
         w = w.replace("ö", "o").replace("ü", "u")
-        _l.append((w, (teams_dict["628463"]["flags_away"][x][0])))
+        _l.append((w, (teams_dict["628463"]["flags_home"][x][0])))
 
     print(json.dumps(sorted(_l), indent=4))
 
@@ -205,7 +205,7 @@ def main():
     # Example IV returns missing away flags for team x:
     # all_missing_flags = get_flags.get_missing_flags(teamdetails_xml.text)
 
-    # print(json.dumps(all_missing_flags['628463']['missing_away'], indent=4))
+    # print(json.dumps(all_missing_flags['628463']['missing_home'], indent=3))
 
     # Example V returns teamdetails for team x:
     team_details = get_teamdetails.get_teamdetails(teamdetails_xml.text)
