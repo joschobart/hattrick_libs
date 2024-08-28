@@ -28,8 +28,9 @@ def compile_flags_list(flags_xml):
         for flag_tuple in flags_tuples:
             if league_id == flag_tuple[0]:
                 league_name = flag_tuple[1]
+                continent = flag_tuple[3]
 
-                li = (league_id, league_name, country_code)
+                li = (league_id, league_name, country_code, continent)
                 flags_list.append(li)
 
     return flags_list
