@@ -32,7 +32,7 @@ In your code directly reference the module you need:
 ```python
 from ht_libs import do_hattrick_request
 ```
-You find a sample-implementation of hattrick_libs in the [__main__.py](__main__.py) file.
+You find a sample-implementation of hattrick_libs in the [\_\_main\_\_.py](__main__.py) file.
 
 ## License
 This package is licensed under the Apache License 2.0.
