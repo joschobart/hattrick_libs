@@ -1,8 +1,8 @@
 # hattrick_libs
 
-This is a library to transform xml-data from the API of the infamous online-strategy-game hattrick (https://www.hattrick.org) into python objects.
+This is a python3 client library for the API of the infamous online-strategy-game hattrick (https://www.hattrick.org).
 
-As this was just intended to be a python-learning-project and to be the ground-work for another hattrick-project of mine initially,
+As this was just intended to be a learning-project and to be the ground-work for another hattrick-project of mine initially,
 https://hattrick-fun-with-flags.app, hattick_libs doesn't aim to be complete nor useful to any other purpose than it was originally built for.
 
 If you are looking for a complete python library for hattrick.org consider also pyCHPP by Pierre Gobin. His project was there before mine and 
@@ -16,22 +16,23 @@ like having a chat with another nerdy hattrick manager.
 Have fun!:)
 
 ## Project state
-For now the projects state is experimental. It's just my this-year christmas project after all!;) I'm actively maintaining this project though.
-(information as of 2023-12-30)
+For now the projects state is work in progress. It originally was just my 2023 christmas project after all!;) I'm actively maintaining it though.
+(information as of 2024-10-15)
 
 ## Project link
 https://github.com/joschobart/hattrick_libs
 
 ## Installation
 ```bash
-pip3 install hattrick-libs 
+pip install hattrick-libs 
 ```
 
 ## Usage
-In your code directly reference to the module you need:
+In your code directly reference the module you need:
 ```python
 from ht_libs import do_hattrick_request
 ```
+You find a sample-implementation of hattrick_libs in the [__main__.py](__main__.py) file.
 
 ## License
 This package is licensed under the Apache License 2.0.
