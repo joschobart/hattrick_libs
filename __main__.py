@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 from time import sleep
 
-from ht_libs import config, do_hattrick_request, get_leaguelevels
+from ht_libs import config, do_hattrick_request, get_matchdetails
 
 # from ht_libs import do_challenge
 # from ht_libs import get_flags
@@ -55,9 +55,7 @@ def oauth_reg():
         pin,
     )
 
-    Path("../cache").mkdir(parents=True, exist_ok=True)
-
-    with open("../cache/creds", "x") as f:
+    with open(".creds", "x") as f:
         f.write(f"{access_token_key} {access_token_secret}")
 
     return
@@ -68,7 +66,7 @@ def main():
     First we try to oauth with hattrick.org and get the xml-files.
     Second you find some demo-code that shows how to use the libs.
     """
-    file = Path("../cache/creds")
+    file = Path(".creds")
 
     if not file.is_file():
         oauth_reg()
@@ -143,16 +141,17 @@ def main():
             #     },
             # )
 
-            # matchdetails_xml = session.get(
-            #     config.BASE_URL,
-            #     params={
-            #         "file": "matchdetails",
-            #         "version": "3.1",
-            #         "matchEvents": "false",
-            #         "matchID": "52282171",
-            #         "sourceSystem": "hattrick",
-            #     },
-            # )
+            matchdetails_xml = session.get(
+                config.BASE_URL,
+                params={
+                    "file": "matchdetails",
+                    "version": "3.1",
+                    "matchEvents": "false",
+                    "matchID": "52282171",
+                    # "matchID": "468535501",
+                    "sourceSystem": "hattrick",
+                },
+            )
 
             # staffavatars_xml = session.get(
             #     config.BASE_URL,
@@ -172,14 +171,14 @@ def main():
             #     },
             # )
 
-            leaguelevels_xml = session.get(
-                config.BASE_URL,
-                params={
-                    "file": "leaguelevels",
-                    "version": "1.0",
-                    "LeagueID": "",
-                },
-            )
+            # leaguelevels_xml = session.get(
+            #     config.BASE_URL,
+            #     params={
+            #         "file": "leaguelevels",
+            #         "version": "1.0",
+            #         "LeagueID": "",
+            #     },
+            # )
 
             print("Download of data successful")
         except Exception as e:
@@ -241,9 +240,9 @@ def main():
     # print(my_pot_challenges)
 
     # Example VIII returns the details about match with id x:
-    # my_match = get_matchdetails.get_matchdetails(matchdetails_xml.text)
+    my_match = get_matchdetails.get_matchdetails(matchdetails_xml.text)
 
-    # print(json.dumps(my_match, indent=4))
+    print(json.dumps(my_match, indent=4))
 
     # Example IX returns the details necessary to compile the trainer avatar:
     # my_trainer = get_trainer_avatar.get_trainer_avatar(staffavatars_xml.text)
@@ -256,11 +255,11 @@ def main():
     # print(json.dumps(my_matches, indent=4))
 
     # Example XI returns the dict with all leaguelevel infos to a league:
-    my_leaguelevels = get_leaguelevels.get_leaguelevels(leaguelevels_xml.text)
+    # my_leaguelevels = get_leaguelevels.get_leaguelevels(leaguelevels_xml.text)
 
-    print(
-        json.dumps([my_leaguelevels["league_levels"][x] for x in range(0, 3)], indent=3)
-    )
+    # print(
+    #     json.dumps([my_leaguelevels["league_levels"][x] for x in range(0, 3)], indent=3)
+    # )
 
 
 if __name__ == "__main__":

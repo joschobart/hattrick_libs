@@ -1,6 +1,6 @@
 [project]
 name = "hattrick_libs"
-version = "0.19.0"
+version = "0.19.1"
 description = "A library for hattrick.org data"
 dependencies = [
     "bs4>=0.0.1",
