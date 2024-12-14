@@ -19,8 +19,10 @@ def get_matchdetails(matchdetails_xml):
     AwayTeam_tag = match_soup.find("AwayTeam")
     Arena_tag = match_soup.find("Arena")
     Scorers_tag = match_soup.find("Scorers")
-
-    Goal_tags = Scorers_tag.find_all("Goal")
+    try:
+        Goal_tags = Scorers_tag.find_all("Goal")
+    except Exception:
+        Goal_tags = []
 
     match_id, *_ = Match_tag.MatchID.contents
     match_date, *_ = Match_tag.MatchDate.contents
