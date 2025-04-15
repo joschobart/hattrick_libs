@@ -1,5 +1,4 @@
-""" ht_libs constants. """
-
+"""ht_libs constants."""
 
 from os import environ
 
@@ -61,6 +60,7 @@ ALL_FLAGS = [
     ["33", "Egypt", "EG", "AF"],
     ["100", "El Salvador", "SV", "NA"],
     ["2", "England", "GB", "EU"],
+    ["175", "Ecuatorial Guinea", "GQ", "AF"],
     ["56", "Estonia", "EE", "EU"],
     ["156", "Ethiopia", "ET", "AF"],
     ["76", "Faroe Islands", "FO", "EU"],
@@ -73,7 +73,6 @@ ALL_FLAGS = [
     ["154", "Guam", "GU", "OC"],
     ["107", "Guatemala", "GT", "NA"],
     ["171", "Guinea", "GN", "AF"],
-    ["175", "Guinea Ecuatorial", "GQ", "AF"],
     ["169", "Guyana", "GY", "SA"],
     ["50", "Greece", "GR", "EU"],
     ["164", "Haiti", "HT", "NA"],

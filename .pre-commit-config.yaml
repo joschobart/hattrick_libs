@@ -1,5 +1,5 @@
 default_language_version:
-  python: python3.7
+  python: python3.10
 
 repos:
   - repo: local
@@ -9,6 +9,7 @@ repos:
         entry: ruff
         language: system
         types: [python]
+        args: [check]
 
   # ignore typing for now
   # - repo: local
