@@ -15,7 +15,7 @@ requires-python = ">= 3.10"
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.uv]
+[tool.rye]
 managed = true
 dev-dependencies = [
     "black>=23.12.1",
@@ -32,6 +32,6 @@ allow-direct-references = true
 [tool.hatch.build.targets.wheel]
         packages = ["ht_libs"]
 
-[tool.uv.workspace]
+[tool.rye.workspace]
 members = ["ht_libs"]
 
