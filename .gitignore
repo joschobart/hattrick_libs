@@ -12,6 +12,9 @@ wheels/
 # .env
 .env
 
+# uv
+uv.lock
+
 # venv
 .venv
 

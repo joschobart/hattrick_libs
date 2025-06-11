@@ -60,7 +60,7 @@ ALL_FLAGS = [
     ["33", "Egypt", "EG", "AF"],
     ["100", "El Salvador", "SV", "NA"],
     ["2", "England", "GB", "EU"],
-    ["175", "Ecuatorial Guinea", "GQ", "AF"],
+    ["175", "Equatorial Guinea", "GQ", "AF"],
     ["56", "Estonia", "EE", "EU"],
     ["156", "Ethiopia", "ET", "AF"],
     ["76", "Faroe Islands", "FO", "EU"],
