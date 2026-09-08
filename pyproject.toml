@@ -15,9 +15,8 @@ requires-python = ">= 3.10"
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.uv]
-managed = true
-dev-dependencies = [
+[dependency-groups]
+dev = [
     "black>=23.12.1",
     "ruff>=0.1.9",
     "mypy>=1.8.0",
