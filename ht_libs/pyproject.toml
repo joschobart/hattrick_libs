@@ -1,6 +1,6 @@
 [project]
 name = "ht_libs"
-version = "0.17.7"
+version = "0.19.7"
 description = "Add your description here"
 authors = [
     { name = "joe", email = "github@schicker.guru" },
