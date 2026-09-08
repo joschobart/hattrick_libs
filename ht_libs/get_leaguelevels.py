@@ -1,5 +1,4 @@
-""" Function to get data from leaguelevels.xml. """
-
+"""Function to get data from leaguelevels.xml."""
 
 from bs4 import BeautifulSoup
 

@@ -1,5 +1,4 @@
-""" Functions and to get data about the series/ league of a team. """
-
+"""Functions and to get data about the series/ league of a team."""
 
 from bs4 import BeautifulSoup
 

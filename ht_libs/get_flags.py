@@ -1,12 +1,11 @@
 """
 Functions and helper-functions to get flags of a team.
 
-Hattrick visualizes flags in two matrices on its website. One for home- and 
-one for away-flags. Further it distinguishes between flags that were already 
-captured and flags still to capture. This module fetches all relevant data 
+Hattrick visualizes flags in two matrices on its website. One for home- and
+one for away-flags. Further it distinguishes between flags that were already
+captured and flags still to capture. This module fetches all relevant data
 from the hattrick data-model to reproduce the same information for a given team.
 """
-
 
 from bs4 import BeautifulSoup
 

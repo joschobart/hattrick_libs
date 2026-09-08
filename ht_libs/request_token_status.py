@@ -1,5 +1,4 @@
-""" Function to get data about the actual oauth token. """
-
+"""Function to get data about the actual oauth token."""
 
 from bs4 import BeautifulSoup
 

@@ -1,5 +1,4 @@
-""" Functions to get data from matchdetails.xml. """
-
+"""Functions to get data from matchdetails.xml."""
 
 from bs4 import BeautifulSoup
 

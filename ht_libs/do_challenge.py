@@ -1,11 +1,10 @@
 """
 Functions and helper-functions to manage challenges for friendlies.
 
-So far it is possible to get a list of challenged teams, to challenge one 
+So far it is possible to get a list of challenged teams, to challenge one
 or multiple opponent teams as well as get information about fixures already
 arranged.
 """
-
 
 from bs4 import BeautifulSoup
 
@@ -43,7 +42,12 @@ def is_challengeable(challengeable_xml):
 
 
 def do_challenge(
-    my_teamid, session, challengeable_teams, match_type="1", match_place="1", is_weekend_friendly="0"
+    my_teamid,
+    session,
+    challengeable_teams,
+    match_type="1",
+    match_place="1",
+    is_weekend_friendly="0",
 ):
     """
     Takes a list of teams to challenge

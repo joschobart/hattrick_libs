@@ -1,5 +1,4 @@
-""" Functions for OAUTH-authentication on hattrick.org. """
-
+"""Functions for OAUTH-authentication on hattrick.org."""
 
 from rauth import OAuth1Service  # type: ignore
 from rauth import OAuth1Session

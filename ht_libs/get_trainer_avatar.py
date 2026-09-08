@@ -1,5 +1,4 @@
-""" Functions to get the trainer-avatar-image from staffavatars.xml. """
-
+"""Functions to get the trainer-avatar-image from staffavatars.xml."""
 
 from bs4 import BeautifulSoup
 

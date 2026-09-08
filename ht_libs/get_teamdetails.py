@@ -1,5 +1,4 @@
-""" Functions to get data from teamdetails.xml. """
-
+"""Functions to get data from teamdetails.xml."""
 
 from bs4 import BeautifulSoup
 
@@ -44,6 +43,18 @@ def get_teamdetails(teamdetails_xml):
         team_country_id, *_ = Team_tag.League.LeagueID.contents
 
         try:
+            league_system_tag = Team_tag.find("LeagueSystemId")
+            if league_system_tag is None:
+                league_system_tag = Team_tag.find("LeagueSystemID")
+
+            if league_system_tag is not None:
+                team_league_gender, *_ = league_system_tag.contents
+            else:
+                team_league_gender, *_ = Team_tag.GenderID.contents
+        except AttributeError:
+            team_league_gender = ""
+
+        try:
             (
                 team_league_level_unit_id,
                 *_,
@@ -74,11 +85,12 @@ def get_teamdetails(teamdetails_xml):
             "team_short": team_short,
             "team_primary": team_primary,
             "team_country_id": team_country_id,
+            "league_gender": team_league_gender,
             "team_league_level_unit_id": team_league_level_unit_id,
             "team_league_level_unit_name": team_league_level_unit_name,
             "team_league_level_unit_level": team_league_level_unit_level,
-            "team_is_bot": team_is_bot,
             "team_in_cup": team_in_cup,
+            "team_is_bot": team_is_bot,
         }
 
     return team_dict

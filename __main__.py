@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-""" SAMPLE IMPLEMENTATION FOR ht_libs. """
+"""SAMPLE IMPLEMENTATION FOR ht_libs."""
 
 
 import json
