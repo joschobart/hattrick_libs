@@ -4,7 +4,7 @@ version = "0.19.7"
 description = "A library for hattrick.org data"
 dependencies = [
     "bs4>=0.0.1",
-    "lxml>=4.9.3",
+    "lxml>=6.1.3",
     "rauth>=0.7.3",
     "types-beautifulsoup4>=4.12.0.7",
 ]
@@ -17,7 +17,7 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
-    "black>=23.12.1",
+    "black>=26.3.1",
     "ruff>=0.1.9",
     "mypy>=1.8.0",
     "isort>=5.13.2",
@@ -33,4 +33,3 @@ allow-direct-references = true
 
 [tool.uv.workspace]
 members = ["ht_libs"]
-
