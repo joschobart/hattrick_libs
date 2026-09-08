@@ -223,7 +223,7 @@ wheels = [
 
 [[package]]
 name = "hattrick-libs"
-version = "0.19.6"
+version = "0.19.7"
 source = { editable = "." }
 dependencies = [
     { name = "bs4" },
@@ -245,14 +245,14 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "bs4", specifier = ">=0.0.1" },
-    { name = "lxml", specifier = ">=4.9.3" },
+    { name = "lxml", specifier = ">=6.1.3" },
     { name = "rauth", specifier = ">=0.7.3" },
     { name = "types-beautifulsoup4", specifier = ">=4.12.0.7" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "black", specifier = ">=23.12.1" },
+    { name = "black", specifier = ">=26.3.1" },
     { name = "isort", specifier = ">=5.13.2" },
     { name = "mypy", specifier = ">=1.8.0" },
     { name = "pre-commit", specifier = ">=3.5.0" },
@@ -262,7 +262,7 @@ dev = [
 
 [[package]]
 name = "ht-libs"
-version = "0.17.7"
+version = "0.19.7"
 source = { editable = "ht_libs" }
 dependencies = [
     { name = "lxml" },
