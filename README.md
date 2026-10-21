@@ -23,6 +23,8 @@ For now the projects state is work in progress. It originally was just my 2023 c
 https://github.com/joschobart/hattrick_libs
 
 ## Installation
+Requires Python 3.11 or newer.
+
 ```bash
 pip install hattrick-libs 
 ```
