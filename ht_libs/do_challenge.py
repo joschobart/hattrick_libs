@@ -25,14 +25,12 @@ def is_challengeable(challengeable_xml):
     for Opponent_tag in Opponent_tags:
         try:
             team_id, *_ = Opponent_tag.TeamId.contents
-        except Exception as e:
-            print(e)
-            team_id = None
+        except (AttributeError, ValueError):
+            team_id = ""
 
         try:
             _is_challengeable, *_ = Opponent_tag.IsChallengeable.contents
-        except Exception as e:
-            print(e)
+        except (AttributeError, ValueError):
             _is_challengeable = "False"
 
         if _is_challengeable == "True":
@@ -75,7 +73,7 @@ def do_challenge(
 
         Error_tag = challenge_soup.find_all("Error")
 
-        if Error_tag is None:
+        if not Error_tag:
             Opponent_tag = challenge_soup.find("Opponent")
             ArenaName_tag = challenge_soup.find("ArenaName")
 
@@ -109,60 +107,51 @@ def get_challenges(challenges_xml):
 
     challenges = {"team_id": team_id, "team_name": team_name, "challenges": []}
 
-    try:
-        Challenge_tags = challenged_teams_soup.find_all("Challenge")
+    Challenge_tags = challenged_teams_soup.find_all("Challenge")
 
-    except Exception as e:
-        print(e)
-        challenges = None
+    for Challenge_tag in Challenge_tags:
+        training_match_id, *_ = Challenge_tag.TrainingMatchID.contents
 
-    else:
-        for Challenge_tag in Challenge_tags:
-            training_match_id, *_ = Challenge_tag.TrainingMatchID.contents
+        try:
+            match_id, *_ = Challenge_tag.MatchID.contents
+        except (AttributeError, ValueError):
+            match_id = ""
 
-            try:
-                match_id, *_ = Challenge_tag.MatchID.contents
-            except Exception as e:
-                print(e)
-                match_id = ""
+        match_time, *_ = Challenge_tag.MatchTime.contents
+        friendly_type, *_ = Challenge_tag.FriendlyType.contents
+        opponent_team_id, *_ = Challenge_tag.Opponent.TeamID.contents
+        opponent_team_name, *_ = Challenge_tag.Opponent.TeamName.contents
 
-            match_time, *_ = Challenge_tag.MatchTime.contents
-            friendly_type, *_ = Challenge_tag.FriendlyType.contents
-            opponent_team_id, *_ = Challenge_tag.Opponent.TeamID.contents
-            opponent_team_name, *_ = Challenge_tag.Opponent.TeamName.contents
+        try:
+            opponent_team_logo, *_ = Challenge_tag.Opponent.LogoURL.contents
+        except (AttributeError, ValueError):
+            opponent_team_logo = ""
 
-            try:
-                opponent_team_logo, *_ = Challenge_tag.Opponent.LogoURL.contents
-            except Exception as e:
-                print(e)
-                opponent_team_logo = ""
+        arena_id, *_ = Challenge_tag.Arena.ArenaID.contents
+        arena_name, *_ = Challenge_tag.Arena.ArenaName.contents
+        country_id, *_ = Challenge_tag.Country.CountryID.contents
+        country_name, *_ = Challenge_tag.Country.CountryName.contents
 
-            arena_id, *_ = Challenge_tag.Arena.ArenaID.contents
-            arena_name, *_ = Challenge_tag.Arena.ArenaName.contents
-            country_id, *_ = Challenge_tag.Country.CountryID.contents
-            country_name, *_ = Challenge_tag.Country.CountryName.contents
+        try:
+            is_agreed, *_ = Challenge_tag.IsAgreed.contents
+        except (AttributeError, ValueError):
+            is_agreed = "False"
 
-            try:
-                is_agreed, *_ = Challenge_tag.IsAgreed.contents
-            except Exception as e:
-                print(e)
-                is_agreed = "False"
-
-            challenges["challenges"].append(
-                {
-                    "training_match_id": training_match_id,
-                    "match_id": match_id,
-                    "match_time": match_time,
-                    "friendly_type": friendly_type,
-                    "opponent_team_id": opponent_team_id,
-                    "opponent_team_name": opponent_team_name,
-                    "opponent_team_logo": opponent_team_logo,
-                    "arena_id": arena_id,
-                    "arena_name": arena_name,
-                    "country_id": country_id,
-                    "country_name": country_name,
-                    "is_agreed": is_agreed,
-                }
-            )
+        challenges["challenges"].append(
+            {
+                "training_match_id": training_match_id,
+                "match_id": match_id,
+                "match_time": match_time,
+                "friendly_type": friendly_type,
+                "opponent_team_id": opponent_team_id,
+                "opponent_team_name": opponent_team_name,
+                "opponent_team_logo": opponent_team_logo,
+                "arena_id": arena_id,
+                "arena_name": arena_name,
+                "country_id": country_id,
+                "country_name": country_name,
+                "is_agreed": is_agreed,
+            }
+        )
 
     return challenges

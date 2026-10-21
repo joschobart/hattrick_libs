@@ -18,10 +18,7 @@ def get_matchdetails(matchdetails_xml):
     AwayTeam_tag = match_soup.find("AwayTeam")
     Arena_tag = match_soup.find("Arena")
     Scorers_tag = match_soup.find("Scorers")
-    try:
-        Goal_tags = Scorers_tag.find_all("Goal")
-    except Exception:
-        Goal_tags = []
+    Goal_tags = Scorers_tag.find_all("Goal") if Scorers_tag is not None else []
 
     match_id, *_ = Match_tag.MatchID.contents
     match_date, *_ = Match_tag.MatchDate.contents
@@ -31,19 +28,19 @@ def get_matchdetails(matchdetails_xml):
     home_team_name, *_ = HomeTeam_tag.HomeTeamName.contents
     try:
         home_team_goals, *_ = HomeTeam_tag.HomeGoals.contents
-    except Exception:
+    except (AttributeError, ValueError):
         home_team_goals = ""
 
     away_team_id, *_ = AwayTeam_tag.AwayTeamID.contents
     away_team_name, *_ = AwayTeam_tag.AwayTeamName.contents
     try:
         away_team_goals, *_ = AwayTeam_tag.AwayGoals.contents
-    except Exception:
+    except (AttributeError, ValueError):
         away_team_goals = ""
 
     goals = []
     for Goal_tag in Goal_tags:
-        goal_number, *_ = Goal_tag.get("Index")
+        goal_number = Goal_tag.get("Index")
         goal_scorer_id, *_ = Goal_tag.ScorerPlayerID.contents
         goal_scorer_name, *_ = Goal_tag.ScorerPlayerName.contents
         goal_scorer_teamid, *_ = Goal_tag.ScorerTeamID.contents
@@ -73,6 +70,7 @@ def get_matchdetails(matchdetails_xml):
         "away_team_goals": away_team_goals,
         "arena_id": arena_id,
         "arena_name": arena_name,
+        "goal_number": goal_number,
         "goals": goals,
     }
 

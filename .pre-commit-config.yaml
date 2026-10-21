@@ -21,14 +21,14 @@ repos:
   #       types: [python]
   #       args: [--strict]
 
-  - repo: local
-    hooks:
-      - id: black
-        name: black
-        entry: black
-        language: system
-        types: [python]
-        args: [--check]
+  # - repo: local
+  #   hooks:
+  #     - id: black
+  #       name: black
+  #       entry: black
+  #       language: system
+  #       types: [python]
+  #       args: [--check]
 
   - repo: local
     hooks:

@@ -58,8 +58,6 @@ def oauth_reg():
     with open(".creds", "x") as f:
         f.write(f"{access_token_key} {access_token_secret}")
 
-    return
-
 
 def main():
     """
@@ -72,13 +70,7 @@ def main():
         oauth_reg()
 
     with open(file, "r") as f:
-        line = f.readline()
-
-        creds = []
-        for cred in line.split(" "):
-            creds.append(cred)
-
-        access_token_key, access_token_secret = creds
+        access_token_key, access_token_secret = f.readline().split()
 
     session = do_hattrick_request.open_auth_session(
         access_token_key, access_token_secret
@@ -181,7 +173,7 @@ def main():
             # )
 
             print("Download of data successful")
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001 - sample script, report any failure
             print(f"{e}: Download of ht-data failed.")
     else:
         print("Problem with oauth-login")
@@ -268,7 +260,7 @@ if __name__ == "__main__":
     try:
         main()
         rc = 0
-    except Exception as e:
-        print("Error: %s" % e, file=sys.stderr)
+    except Exception as e:  # noqa: BLE001 - sample script, report any failure
+        print(f"Error: {e}", file=sys.stderr)
 
     sys.exit(rc)

@@ -66,25 +66,12 @@ def get_my_flags(teamdetails_xml):
     for Team_tag in Team_tags:
         team_id, *_ = Team_tag.TeamID.contents
 
-        def get_place(place):
-            if place == "home":
-                flags = Team_tag.Flags.HomeFlags.find_all("Flag")
-            else:
-                flags = Team_tag.Flags.AwayFlags.find_all("Flag")
-
-            all_flags = compile_flags_list(flags)
-
-            return all_flags
-
-        for x in ["home", "away"]:
-            if x == "home":
-                list_flags_home = get_place(x)
-            else:
-                list_flags_away = get_place(x)
+        home = Team_tag.Flags.HomeFlags.find_all("Flag")
+        away = Team_tag.Flags.AwayFlags.find_all("Flag")
 
         teams_dict[team_id] = {
-            "flags_home": list_flags_home,
-            "flags_away": list_flags_away,
+            "flags_home": compile_flags_list(home),
+            "flags_away": compile_flags_list(away),
         }
 
     return teams_dict

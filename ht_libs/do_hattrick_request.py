@@ -1,7 +1,6 @@
 """Functions for OAUTH-authentication on hattrick.org."""
 
-from rauth import OAuth1Service  # type: ignore
-from rauth import OAuth1Session
+from rauth import OAuth1Service, OAuth1Session  # type: ignore
 
 from . import config
 

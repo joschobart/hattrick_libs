@@ -19,3 +19,6 @@ wheels/
 .mypy_cache/
 .ruff_cache/
 dist/
+
+#repomix
+repomix.md
