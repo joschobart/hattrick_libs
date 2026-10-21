@@ -39,14 +39,7 @@ def get_all_flags():
     """
     Get a list with all available flags from config.py
     """
-    all_flags = config.ALL_FLAGS
-    flags_tuples = []
-
-    for flag in all_flags:
-        flag = tuple(flag)
-        flags_tuples.append(flag)
-
-    return flags_tuples
+    return [tuple(flag) for flag in config.ALL_FLAGS]
 
 
 def get_my_flags(teamdetails_xml):

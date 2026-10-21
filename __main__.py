@@ -5,6 +5,7 @@
 
 import json
 import sys
+from http import HTTPStatus
 from pathlib import Path
 from time import sleep
 
@@ -35,18 +36,17 @@ def oauth_reg():
             expression = input("Did you authorize FwF in the browser? (y/n) ")
 
         except (KeyboardInterrupt, EOFError):
-            raise SystemExit()
+            raise SystemExit from None
 
         if expression.lower() in {"ja", "j", "yes", "y"}:
             try:
                 pin = input("Paste the pin from the authorize-website now: ")
                 break
-
             except (KeyboardInterrupt, EOFError):
-                raise SystemExit()
+                raise SystemExit from None
 
         if expression.lower() in {"quit", "exit", "q", "n"}:
-            raise SystemExit()
+            raise SystemExit
 
     access_token_key, access_token_secret = do_hattrick_request.get_access_token(
         request_token,
@@ -68,7 +68,7 @@ def main():
     if not file.is_file():
         oauth_reg()
 
-    with open(file, "r") as f:
+    with open(file) as f:
         access_token_key, access_token_secret = f.readline().split()
 
     session = do_hattrick_request.open_auth_session(
@@ -77,7 +77,7 @@ def main():
 
     status = session.get(config.TOKEN_STATUS_URL)
 
-    if status.status_code == 200:
+    if status.status_code == HTTPStatus.OK:
         try:
             # teamdetails_xml = session.get(
             #     config.BASE_URL,
@@ -225,7 +225,9 @@ def main():
 
     # print(json.dumps(my_pot_challenges, indent=4))
 
-    # my_challenges = do_challenge.do_challenge(session, my_pot_challenges)
+    # my_challenges = do_challenge.do_challenge(
+    #     my_teamid="2101798", session=session, challengeable_teams=my_pot_challenges
+    # )
 
     # print(json.dumps(my_pot_challenges, indent=4))
     # print(my_pot_challenges)

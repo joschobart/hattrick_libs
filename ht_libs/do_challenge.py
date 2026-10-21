@@ -39,7 +39,7 @@ def is_challengeable(challengeable_xml):
     return challengeable_teams
 
 
-def do_challenge(
+def do_challenge(  # noqa: PLR0913, PLR0917
     my_teamid,
     session,
     challengeable_teams,
