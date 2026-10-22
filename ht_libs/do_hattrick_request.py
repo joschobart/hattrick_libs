@@ -1,17 +1,17 @@
-"""Functions for OAUTH-authentication on hattrick.org."""
+"""Functions for OAUTH-authentication on hattrick.org (CHPP, OAuth 1.0a)."""
 
-from rauth import OAuth1Service, OAuth1Session  # type: ignore
+from requests_oauthlib import OAuth1Session
 
 from . import config
 
-request_client = OAuth1Service(
-    consumer_key=config.OAUTH_KEY,
-    consumer_secret=config.OAUTH_SECRET,
-    request_token_url=config.REQUEST_TOKEN_URL,
-    access_token_url=config.ACCESS_TOKEN_URL,
-    authorize_url=config.AUTHORIZE_URL,
-    base_url=config.BASE_URL,
-)
+
+def _client(**kwargs):
+    """Create an OAuth1Session signed with this app's consumer credentials."""
+    return OAuth1Session(
+        config.OAUTH_KEY,
+        client_secret=config.OAUTH_SECRET,
+        **kwargs,
+    )
 
 
 def fetch_authorize_url(oauth_url="oob", scope=""):
@@ -22,16 +22,15 @@ def fetch_authorize_url(oauth_url="oob", scope=""):
 
     :param oauth_url: Default value = "oob")
     :param scope: Default value = "")
-    :returns: request_token, request_token_secret
+    :returns: request_token, request_token_secret, authorize_url
     :raises:
     """
-    request_token, request_token_secret = request_client.get_request_token(
-        params={
-            "oauth_callback": oauth_url,
-        }
-    )
+    oauth = _client(callback_uri=oauth_url)
+    tokens = oauth.fetch_request_token(config.REQUEST_TOKEN_URL)
 
-    authorize_url = request_client.get_authorize_url(request_token, scope=scope)
+    request_token = tokens["oauth_token"]
+    request_token_secret = tokens["oauth_token_secret"]
+    authorize_url = oauth.authorization_url(config.AUTHORIZE_URL, scope=scope)
 
     return request_token, request_token_secret, authorize_url
 
@@ -42,18 +41,19 @@ def get_access_token(request_token, request_token_secret, auth_pin):
     Step 3 : Save auth_pin in var after the client was authorized.
     Step 4 : Exchange the request token for an access token.
 
-
     :param request_token:
     :param request_token_secret:
     :param auth_pin:
     :returns: access_token_key, access_token_secret
     :raises:
     """
-    access_token_key, access_token_secret = request_client.get_access_token(
-        request_token, request_token_secret, params={"oauth_verifier": auth_pin}
+    oauth = _client(
+        resource_owner_key=request_token,
+        resource_owner_secret=request_token_secret,
     )
+    tokens = oauth.fetch_access_token(config.ACCESS_TOKEN_URL, verifier=auth_pin)
 
-    return access_token_key, access_token_secret
+    return tokens["oauth_token"], tokens["oauth_token_secret"]
 
 
 def open_auth_session(access_token_key, access_token_secret):
@@ -66,11 +66,7 @@ def open_auth_session(access_token_key, access_token_secret):
     :returns: auth_session
     :raises:
     """
-    my_auth_session = OAuth1Session(
-        config.OAUTH_KEY,
-        config.OAUTH_SECRET,
-        access_token=access_token_key,
-        access_token_secret=access_token_secret,
+    return _client(
+        resource_owner_key=access_token_key,
+        resource_owner_secret=access_token_secret,
     )
-
-    return my_auth_session

@@ -233,9 +233,9 @@ def main():
     # print(my_pot_challenges)
 
     # Example VIII returns the details about match with id x:
-    my_match = get_matchdetails.get_matchdetails(matchdetails_xml.text)
+    my_match = get_matchdetails.get_matchdetails(matchdetails_xml.content)
 
-    print(json.dumps(my_match, indent=4))
+    print(json.dumps(my_match, indent=4, ensure_ascii=False))
 
     # Example IX returns the details necessary to compile the trainer avatar:
     # my_trainer = get_trainer_avatar.get_trainer_avatar(staffavatars_xml.text)
