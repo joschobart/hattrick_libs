@@ -174,6 +174,12 @@ def test_matchdetails_upcoming_match_has_no_goals():
     assert result["goals"] == []
 
 
+def test_matchdetails_accepts_utf8_bytes():
+    xml = MATCHDETAILS_UPCOMING_XML.replace("FC Home", "FC Vorwärts")
+    result = get_matchdetails.get_matchdetails(xml.encode("utf-8"))
+    assert result["home_team_name"] == "FC Vorwärts"
+
+
 # --- series -----------------------------------------------------------------
 
 SEARCH_XML = """<HattrickData>

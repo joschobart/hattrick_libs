@@ -39,6 +39,8 @@ from ht_libs import do_hattrick_request
 ```
 You find a sample-implementation of hattrick_libs in the [\_\_main\_\_.py](__main__.py) file.
 
+> Pass response.content (bytes), not response.text.
+
 ## License
 This package is licensed under the Apache License 2.0.
 
