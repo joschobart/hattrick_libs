@@ -63,7 +63,7 @@ def open_auth_session(access_token_key, access_token_secret):
 
     :param access_token_key:
     :param access_token_secret:
-    :returns: auth_session (a requests.Session, so .get(url, params=...) works as before)
+    :returns: auth_session
     :raises:
     """
     return _client(
