@@ -19,6 +19,9 @@ Have fun!:)
 For now the projects state is work in progress. It originally was just my 2023 christmas project after all!;) I'm actively maintaining it though.
 (information as of 2024-10-15)
 
+## Build state
+![CI](https://github.com/joschobart/hattrick_libs/actions/workflows/ci.yml/badge.svg)
+
 ## Project link
 https://github.com/joschobart/hattrick_libs
 
