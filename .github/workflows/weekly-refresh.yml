@@ -1,0 +1,75 @@
+name: Weekly dependency refresh
+
+on:
+  schedule:
+    - cron: "0 5 * * 1" # UTC: Monday 05:00
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: weekly-refresh
+  cancel-in-progress: false
+
+env:
+  HATTRICK_OAUTH_CONSUMER_KEY: dummy
+  HATTRICK_OAUTH_CONSUMER_SECRET: dummy
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v10
+        with:
+          enable-cache: true
+
+      - name: Upgrade lockfile
+        run: uv lock --upgrade 2>&1 | tee lock-output.txt
+
+      - name: Anything changed?
+        id: diff
+        run: |
+          if git diff --quiet -- uv.lock; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "uv.lock is already up to date. Nothing to do."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Lint, test and build against the new lockfile
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          uv sync --locked
+          uv run ruff check .
+          uv run ruff format --check .
+          uv run pytest
+          uv build
+
+      - name: Write PR description
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          {
+            echo "Automated \`uv lock --upgrade\` 🔄"
+            echo
+            echo "✅ Lint, tests (Python 3.14) and wheel build passed before this PR was opened."
+            echo
+            echo '```'
+            grep -E '^(Added|Updated|Removed) ' lock-output.txt || true
+            echo '```'
+          } > pr-body.md
+
+      - name: Open PR
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.REFRESH_PAT || github.token }}
+          branch: deps/weekly-refresh
+          add-paths: uv.lock
+          commit-message: "chore(deps): weekly uv lock --upgrade"
+          title: "chore(deps): weekly dependency refresh"
+          body-path: pr-body.md
+          delete-branch: true
