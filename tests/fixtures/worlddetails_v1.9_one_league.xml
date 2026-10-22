@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HattrickData>
+  <FileName>worlddetails.xml</FileName>
+  <Version>1.9</Version>
+  <UserID>0</UserID>
+  <FetchedDate>2026-10-22 22:03:41</FetchedDate>
+  <LeagueList>
+    <League>
+      <LeagueID>1</LeagueID>
+      <LeagueName>Sweden</LeagueName>
+      <Season>95</Season>
+      <SeasonOffset>0</SeasonOffset>
+      <MatchRound>14</MatchRound>
+      <ShortName>Sverige</ShortName>
+      <Continent>Europe</Continent>
+      <ZoneName>Northern Europe</ZoneName>
+      <EnglishName>Sweden</EnglishName>
+      <LanguageId>1</LanguageId>
+      <LanguageName>Svenska</LanguageName>
+      <Country Available="True">
+        <CountryID>1</CountryID>
+        <CountryName>Sverige</CountryName>
+        <CurrencyName>kr</CurrencyName>
+        <CurrencyRate>1</CurrencyRate>
+        <CountryCode>SE</CountryCode>
+        <DateFormat>YYYY-MM-DD</DateFormat>
+        <TimeFormat>hh:mm</TimeFormat>
+      </Country>
+      <Cups>
+        <Cup>
+          <CupID>1</CupID>
+          <CupName>Svenska Cupen</CupName>
+          <CupLeagueLevel>0</CupLeagueLevel>
+          <CupLevel>1</CupLevel>
+          <CupLevelIndex>1</CupLevelIndex>
+          <MatchRound>13</MatchRound>
+          <MatchRoundsLeft>0</MatchRoundsLeft>
+        </Cup>
+        <Cup>
+          <CupID>512</CupID>
+          <CupName>Smaragdcupen</CupName>
+          <CupLeagueLevel>0</CupLeagueLevel>
+          <CupLevel>2</CupLevel>
+          <CupLevelIndex>1</CupLevelIndex>
+          <MatchRound>13</MatchRound>
+          <MatchRoundsLeft>0</MatchRoundsLeft>
+        </Cup>
+        <Cup>
+          <CupID>641</CupID>
+          <CupName>Rubincupen</CupName>
+          <CupLeagueLevel>0</CupLeagueLevel>
+          <CupLevel>2</CupLevel>
+          <CupLevelIndex>2</CupLevelIndex>
+          <MatchRound>12</MatchRound>
+          <MatchRoundsLeft>0</MatchRoundsLeft>
+        </Cup>
+        <Cup>
+          <CupID>770</CupID>
+          <CupName>Safircupen</CupName>
+          <CupLeagueLevel>0</CupLeagueLevel>
+          <CupLevel>2</CupLevel>
+          <CupLevelIndex>3</CupLevelIndex>
+          <MatchRound>11</MatchRound>
+          <MatchRoundsLeft>0</MatchRoundsLeft>
+        </Cup>
+        <Cup>
+          <CupID>899</CupID>
+          <CupName>Tröstcupen</CupName>
+          <CupLeagueLevel>0</CupLeagueLevel>
+          <CupLevel>3</CupLevel>
+          <CupLevelIndex>1</CupLevelIndex>
+          <MatchRound>12</MatchRound>
+          <MatchRoundsLeft>0</MatchRoundsLeft>
+        </Cup>
+        <Cup>
+          <CupID>1328</CupID>
+          <CupName>Division VI-cupen</CupName>
+          <CupLeagueLevel>7</CupLeagueLevel>
+          <CupLevel>1</CupLevel>
+          <CupLevelIndex>1</CupLevelIndex>
+          <MatchRound>0</MatchRound>
+          <MatchRoundsLeft>0</MatchRoundsLeft>
+        </Cup>
+        <Cup>
+          <CupID>1341</CupID>
+          <CupName>Smaragdcupen Division VI</CupName>
+          <CupLeagueLevel>7</CupLeagueLevel>
+          <CupLevel>2</CupLevel>
+          <CupLevelIndex>1</CupLevelIndex>
+          <MatchRound>0</MatchRound>
+          <MatchRoundsLeft>0</MatchRoundsLeft>
+        </Cup>
+        <Cup>
+          <CupID>1354</CupID>
+          <CupName>Rubincupen Division VI </CupName>
+          <CupLeagueLevel>7</CupLeagueLevel>
+          <CupLevel>2</CupLevel>
+          <CupLevelIndex>2</CupLevelIndex>
+          <MatchRound>0</MatchRound>
+          <MatchRoundsLeft>0</MatchRoundsLeft>
+        </Cup>
+        <Cup>
+          <CupID>1367</CupID>
+          <CupName>Safircupen Division VI</CupName>
+          <CupLeagueLevel>7</CupLeagueLevel>
+          <CupLevel>2</CupLevel>
+          <CupLevelIndex>3</CupLevelIndex>
+          <MatchRound>0</MatchRound>
+          <MatchRoundsLeft>0</MatchRoundsLeft>
+        </Cup>
+        <Cup>
+          <CupID>1380</CupID>
+          <CupName>Tröstcupen Division VI</CupName>
+          <CupLeagueLevel>7</CupLeagueLevel>
+          <CupLevel>3</CupLevel>
+          <CupLevelIndex>1</CupLevelIndex>
+          <MatchRound>0</MatchRound>
+          <MatchRoundsLeft>0</MatchRoundsLeft>
+        </Cup>
+      </Cups>
+      <NationalTeamId>3000</NationalTeamId>
+      <U20TeamId>3041</U20TeamId>
+      <ActiveTeams>6543</ActiveTeams>
+      <ActiveUsers>6199</ActiveUsers>
+      <WaitingUsers>0</WaitingUsers>
+      <TrainingDate>2026-10-22 22:00:00</TrainingDate>
+      <EconomyDate>2026-10-25 00:10:00</EconomyDate>
+      <CupMatchDate>2026-10-14 19:00:00</CupMatchDate>
+      <SeriesMatchDate>2026-10-25 10:00:00</SeriesMatchDate>
+      <Sequence1>2026-10-26 05:00:00</Sequence1>
+      <Sequence2>2026-10-27 05:30:00</Sequence2>
+      <Sequence3>2026-10-28 00:00:01</Sequence3>
+      <Sequence5>2026-10-29 05:00:00</Sequence5>
+      <Sequence7>2026-10-24 05:15:00</Sequence7>
+      <NumberOfLevels>6</NumberOfLevels>
+    </League></LeagueList></HattrickData>

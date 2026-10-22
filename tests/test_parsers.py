@@ -1,5 +1,7 @@
 """Tests for the XML parser modules of ht_libs."""
 
+from pathlib import Path
+
 from ht_libs import (
     get_leaguelevels,
     get_matchdetails,
@@ -10,6 +12,9 @@ from ht_libs import (
     get_worlddetails,
     request_token_status,
 )
+
+FIXTURES = Path(__file__).parent / "fixtures"
+
 
 # --- worlddetails -----------------------------------------------------------
 
@@ -294,6 +299,17 @@ def test_teamdetails_empty_loginname_becomes_bot():
         "<Loginname>test_manager</Loginname>", "<Loginname></Loginname>"
     )
     assert get_teamdetails.get_teamdetails(xml)["user"]["login_name"] == "bot"
+
+
+def test_worlddetails_real_chpp_v19_response_without_league_system():
+    # recorded from CHPP 2026-10-22, trimmed to one league
+    xml = (FIXTURES / "worlddetails_v1.9_one_league.xml").read_bytes()
+    d = get_worlddetails.get_my_worlddetails(xml)
+    assert d["league_id"] == "1"
+    assert d["league_name"] == "Sweden"
+    assert d["league_depth"] == "6"
+    assert d["season_round"] == "14"
+    assert d["league_gender"] == ""
 
 
 # --- trainer avatar ---------------------------------------------------------
