@@ -48,6 +48,7 @@ def get_matchdetails(matchdetails_xml):
 
         goals.append(
             {
+                "goal_number": goal_number,
                 "goal_scorer_id": goal_scorer_id,
                 "goal_scorer_name": goal_scorer_name,
                 "goal_scorer_teamid": goal_scorer_teamid,
@@ -70,7 +71,6 @@ def get_matchdetails(matchdetails_xml):
         "away_team_goals": away_team_goals,
         "arena_id": arena_id,
         "arena_name": arena_name,
-        "goal_number": goal_number,
         "goals": goals,
     }
 

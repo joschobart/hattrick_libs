@@ -31,3 +31,11 @@ allow-direct-references = true
 [tool.ruff.lint]
 select = ["E4", "E7", "E9", "F", "I", "B", "UP", "PL", "PERF", "BLE", "RUF"]
 allowed-confusables = ["’"]
+
+[tool.ruff.lint.per-file-ignores]
+# magic numbers and == "" are fine (and clearer) in test asserts
+"tests/**" = ["PLR2004", "PLC1901"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["-ra", "--strict-markers"]
