@@ -2,6 +2,8 @@
 
 from bs4 import BeautifulSoup
 
+from ._xml import optional_text
+
 
 def get_teamdetails(teamdetails_xml):
     """
@@ -80,6 +82,11 @@ def get_teamdetails(teamdetails_xml):
         except AttributeError:
             team_in_cup = "True"
 
+        # New in teamdetails 3.8/3.9. "" with older versions
+        team_gender_id = optional_text(Team_tag, "GenderID")  # 1 = male, 2 = female
+        # CHPP CountryID, NOT the LeagueID (women's teams: LeagueID is always 3000)
+        team_real_country_id = optional_text(Team_tag.find("Country"), "CountryID")
+
         team_dict[team_id] = {
             "team_name": team_name,
             "team_short": team_short,
@@ -91,6 +98,8 @@ def get_teamdetails(teamdetails_xml):
             "team_league_level_unit_level": team_league_level_unit_level,
             "team_in_cup": team_in_cup,
             "team_is_bot": team_is_bot,
+            "team_gender_id": team_gender_id,
+            "team_real_country_id": team_real_country_id,
         }
 
     return team_dict
