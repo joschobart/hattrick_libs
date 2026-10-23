@@ -45,6 +45,7 @@
       <LeagueID>3000</LeagueID>
       <LeagueName>Hattrick Femme International</LeagueName>
       <LeagueSystemID>2</LeagueSystemID>
+      <Country Available="False" />
     </League>
   </LeagueList>
 </HattrickData>
