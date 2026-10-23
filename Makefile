@@ -56,6 +56,8 @@ referee: ## 🧑‍⚖️ show every protection rule active on main
 >gh api 'repos/{owner}/{repo}/branches/main/protection' \
 >  --jq '.required_pull_request_reviews.required_approving_review_count' 2>/dev/null \
 >  || echo "none 👍"
+>gh api 'repos/{owner}/{repo}/rules/branches/main' \
+>  --jq '.[] | select(.type=="required_status_checks") | "required check: " + .parameters.required_status_checks[].context'
 
 # --- 📦 dependencies ----------------------------------------------------------
 
