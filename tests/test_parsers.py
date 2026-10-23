@@ -282,6 +282,8 @@ def test_teamdetails_user_and_full_team():
         "team_league_level_unit_level": "2",
         "team_in_cup": "False",
         "team_is_bot": "False",
+        "team_gender_id": "",  # the hand-made XML has no GenderID
+        "team_real_country_id": "",  # ...and no Country block
     }
 
 
