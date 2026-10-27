@@ -279,7 +279,7 @@ wheels = [
 
 [[package]]
 name = "hattrick-libs"
-version = "0.22.0"
+version = "0.22.1"
 source = { editable = "." }
 dependencies = [
     { name = "beautifulsoup4" },

@@ -1,6 +1,6 @@
 [project]
 name = "hattrick_libs"
-version = "0.22.0"
+version = "0.22.1"
 description = "A library for hattrick.org data"
 dependencies = [
     "beautifulsoup4>=4.13",
